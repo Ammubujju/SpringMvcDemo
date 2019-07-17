@@ -5,19 +5,28 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-
+import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 public class UserController {
-    @Autowired
-    User user;
-    //mapping the request
-    @RequestMapping(value = "/",method = RequestMethod.GET)
-    public String display( Model m)
-    {
-        // User user = new User();
-        user.setMsg("Welcome to Stackroute");
-        //adding attribute to model
-        m.addAttribute("message",user.getMsg());
+    //calling because index and viewpage are in the same folder web-inf
+    @RequestMapping("/")
+    public String index(){
         return "index";
     }
+
+    @Autowired
+    private User user;
+
+    @RequestMapping(value = "/hello", method = RequestMethod.POST)
+    public String enterDetails(@RequestParam("username") String name, @RequestParam("password") String pass, Model m)
+    {
+        //setting the name and password of user
+        user.setName(name);
+        user.setPassword(pass);
+        // getting name from user and printing it
+        String msg = "Welcome "+user.getName()+" to Stackroute";
+        m.addAttribute("msg",msg);
+        return "viewpage";
+    }
+
 }

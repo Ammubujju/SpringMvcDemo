@@ -1,19 +1,23 @@
 package com.stackroute;
 
-import org.springframework.stereotype.Component;
-
-@Component
 public class User {
-    private String msg;
-    //setters and getters
-    public String getMsg() {
-        return msg;
+    //creating data variables
+    private String name;
+    private String password;
+    //getters and setters for the data variables
+    public String getName() {
+        return name;
     }
 
-    public void setMsg(String msg) {
-        this.msg = msg;
+    public void setName(String name) {
+        this.name = name;
     }
 
+    public String getPassword() {
+        return password;
+    }
 
+    public void setPassword(String password) {
+        this.password = password;
+    }
 }
-
